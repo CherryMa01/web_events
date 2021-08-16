@@ -50,6 +50,7 @@ $(function() {
         })
     });
     //登录页面发起post请求
+    //
     $('#form_login').submit(function(e) {
         e.preventDefault();
         $.ajax({

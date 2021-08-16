@@ -54,14 +54,14 @@ function renderAvatar(user) {
     //根据获取的内容设置欢迎文本
     $("#welcome").html('欢迎&nbsp;&nbsp;' + name)
         //按需渲染头像
-        //1.渲染文本头像
+        //1.渲染图片头像（有图片头像的情况下）
     if (user.user_pic !== null) {
         $('.layui-nav-img').attr('src', user.user_pic).show();
         $('.text-avatar').hide();
     } else {
         //2.渲染文本头像
         $('.layui-nav-img').hide()
-        var first = name[0].toUpperCase();
+        var first = name[0].toUpperCase(); //用户名或者昵称的第一个大写字母
         $('.text-avatar').html(first).show();
     }
 }
