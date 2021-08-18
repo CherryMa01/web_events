@@ -67,17 +67,51 @@ $(function() {
             method: 'get',
             url: '/my/cate/info?id=' + id,
             success: function(res) {
-                console.log(res);
+                // console.log(res);
                 form.val('form-edit', res.data)
             }
         })
     });
-
-
     //通过事件委托发起【修改】弹出框的提交事件，在这里事件绑定给tbody
-    // $('tbody').on('submit', '#form-edit', function(e) {
-    //     e.preventDefault();
+    $('body').on('submit', '#form-edit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            method: 'put',
+            url: '/my/cate/info',
+            data: $(this).serialize(),
+            success: function(res) {
+                // console.log(res);
+                if (res.code !== 0) {
+                    return layer.msg('修改文章信息失败')
+                }
+                layer.msg('更新文章信息成功')
+                    //修改成功，调用获取文章分类的函数
+                layer.close(indexEdit)
+                initArtCateList()
 
-    // })
+            }
+        })
+    });
+    //点击【删除】按钮，显示弹出唐
+    var indexDelete = null;
+    $('tbody').on('click', '.btn-delete', function() {
+        //获取id,删除点击的行
+        var id = $(this).attr('data-id')
+        indexDelete = layer.confirm('确认删除?', { icon: 3, title: '提示' }, function() {
+            $.ajax({
+                method: 'delete',
+                url: '/my/cate/del?id=' + id,
+                success: function(res) {
+                    if (res.code !== 0) {
+                        return layer.msg('删除文章信息失败')
+                    }
+                    layer.msg('删除文章信息成功')
+                        //删除之后关闭弹出层
+                    layer.close(indexDelete)
+                    initArtCateList()
+                }
+            })
 
+        })
+    })
 })

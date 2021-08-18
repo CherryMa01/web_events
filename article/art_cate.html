@@ -44,13 +44,12 @@
             <td>{{$value.cate_name}}</td>
             <td>{{$value.cate_alias}}</td>
             <td> <button type="button" class="layui-btn layui-btn-xs btn-edit" data-id="{{$value.id}}">编辑</button>
-                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs">删除</button>
+                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete" data-id="{{$value.id}}">删除</button>
             </td>
-
         </tr>
         {{/each}}
     </script>
-    <!-- //渲染添加分类按钮的弹出框 -->
+    <!-- //在html中用script渲染【添加类别】按钮的弹出框 -->
     <script type="text/html" id="dialog-add">
         <form class="layui-form" id="form-add">
             <div class="layui-form-item">
@@ -73,11 +72,11 @@
             </div>
         </form>
     </script>
-    <!-- //渲染修改分类按钮的弹出框 -->
+    <!-- //在html中用script渲染【修改文章分类】按钮的弹出框 -->
     <script type="text/html" id="dialog-edit">
         <form class="layui-form" id="form-edit" lay-filter="form-edit">
             <!-- 隐藏域，保存 Id 的值 -->
-            <input type="hidden" name="Id">
+            <input type="hidden" name="id">
             <div class="layui-form-item">
                 <label class="layui-form-label">分类名称</label>
                 <div class="layui-input-block">
