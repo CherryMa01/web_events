@@ -94,8 +94,6 @@ $(function() {
                 if (res.code !== 0) {
                     return layer.msg('文章发布失败')
                 }
-                // layer.msg('文章发布成功');
-                alert('成功')
                 layer.msg('文章发布成功');
                 location.href = '/article/art_list.html'
             }
